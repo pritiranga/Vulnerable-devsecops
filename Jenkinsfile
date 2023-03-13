@@ -3,6 +3,11 @@ pipeline{
     tools{
         gradle 'Gradle'
         }
+	
+    environment {
+        ARTIFACTORY_SERVER_URL = 'http://192.168.6.52:8081/artifactory'
+
+    }
     stages {
 
 	    stage('Software Composition Anaylsis->Dependency-checker'){
@@ -39,11 +44,11 @@ pipeline{
             }
           }
         }
-
-        stage('Gradle build'){
+	    
+	stage('Gradle build'){
             steps{
-                sh 'gradle clean build --no-daemon'
-            }
+               	sh 'gradle clean build artifactoryPublish --no-daemon'
+      	    }
         }
 
         stage('Unit Testing'){     
