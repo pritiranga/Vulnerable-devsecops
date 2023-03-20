@@ -8,6 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Run the Gradle build command
+RUN chmod +x gradlew
 RUN ./gradlew build
 
 # Set the command to run the application
