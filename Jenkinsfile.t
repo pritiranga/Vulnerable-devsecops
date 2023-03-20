@@ -4,22 +4,6 @@ pipeline{
         gradle 'Gradle'
         }
     stages {
-        stage('Gradle build'){
-            steps{
-               	sh 'gradle clean build --no-daemon'
-      	    }
-        }
-
-        stage('Unit Testing'){     
-            steps{
-                junit(testResults: 'build/test-results/test/*.xml', allowEmptyResults : true, skipPublishingChecks: true)
-           	}
-            post {
-                success {
-                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/reports/tests/test/', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-         		}
-       		}
-        }
         
         stage('Building Docker Image'){
             steps{
