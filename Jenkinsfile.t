@@ -6,7 +6,7 @@ pipeline{
     stages {
         stage('Gradle build'){
             steps{
-               	sh 'gradle clean build artifactoryPublish --no-daemon'
+               	sh 'gradle clean build --no-daemon'
       	    }
         }
 
