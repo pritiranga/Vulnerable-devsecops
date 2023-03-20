@@ -1,30 +1,14 @@
-# Use an existing Gradle image as the base image
-FROM gradle:6.7.0-jdk14 AS build
+# Use a base image with the JDK and necessary build tools installed
+FROM openjdk:11-jdk-slim
 
-HEALTHCHECK NONE
-
-# Set the working directory
+# Set the working directory to /app
 WORKDIR /app
 
+# Copy the Gradle project files to the container
+COPY . .
 
-# Copy the build files
-COPY build.gradle gradlew ./
-COPY gradle gradle
-COPY src src
+# Run the Gradle build command
+RUN ./gradlew build
 
-# Run Gradle to build the project
-RUN gradle build --no-daemon
-
-# Use a lightweight Java runtime image as the final image
-FROM openjdk:14-jdk-alpine
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the built jar file from the build stage
-COPY --from=build /app/build/libs/*.jar /app/vulnerable-application.jar
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "/app/vulnerable-application.jar"]
-
-
+# Set the command to run the application
+CMD ["java", "-jar", "build/libs/*.jar"]
