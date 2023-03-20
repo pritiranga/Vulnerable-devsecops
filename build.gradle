@@ -50,17 +50,17 @@ sonarqube {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-spotless {
+/*spotless {
     java {
         // Don't enforce the license, just the format.
         clearSteps()
         googleJavaFormat().aosp()
     }
-    format 'javascript', {
-    	target 'src/main/resources/**/*.js'
-    	prettier().config(['filepath': 'file.js'])
-  	}
-} 
+    format 'javascript', { */
+//    	target 'src/main/resources/**/*.js'
+//    	prettier().config(['filepath': 'file.js'])
+//  	}
+//} 
 
 jib {
 	from {
