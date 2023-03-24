@@ -5,6 +5,7 @@ buildscript {
         mavenCentral()
 	maven{
 		url 'https://maven-central.storage.googleapis.com'
+		url "https://repo.spring.io/release"
 	}
     }
     dependencies {
