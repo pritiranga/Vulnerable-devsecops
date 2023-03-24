@@ -145,15 +145,5 @@ jacocoTestReport {
     }
 }
 
-artifactory {
-    contextUrl = 'http://192.168.6.52:8081/artifactory'
-    publish {
-        repository {
-            repoKey = 'devsecops-test'
-            username = "admin"
-            password = "password"
-            maven = true
-        }
-    }
-}
+
 
