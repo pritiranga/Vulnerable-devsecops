@@ -1,7 +1,7 @@
 FROM openjdk:11-jdk-slim
 
 RUN apt-get update && \
-    apt-get install -y wget && \
+    apt-get install wget -y && \
     apt-get clean
 
 # Install Gradle
