@@ -1,6 +1,9 @@
 buildscript {
     repositories {
         mavenCentral()
+	maven(
+		url 'https://maven-central.storage.googleapis.com'
+	)
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.4.5")
