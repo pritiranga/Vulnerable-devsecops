@@ -17,6 +17,6 @@ ENV PATH=$PATH:$GRADLE_HOME/bin
 # Copy the project files and build the application
 COPY . /app
 WORKDIR /app
-RUN ./gradlew clean build --refresh-dependencies
+RUN gradle clean build --refresh-dependencies
 
 CMD ["java", "-jar", "/app/build/libs/myapp.jar"]
