@@ -1,6 +1,7 @@
 FROM openjdk:11-jdk-slim
 
-RUN apt-get update 
+RUN apt-get update
+RUN apt-get install zip -y
 RUN apt-get install wget -y 
 RUN apt-get clean
 
