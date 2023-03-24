@@ -3,12 +3,12 @@ buildscript {
     	google()
 	jcenter()
         mavenCentral()
-/*	maven{
+	maven{
 		url 'https://maven-central.storage.googleapis.com'
 		url "https://repo.spring.io/release"
-	}*/
-	maven { url "https://plugins.gradle.org/m2/" }
-    	maven { url "https://storage.googleapis.com/jib-releases" }
+		url "https://plugins.gradle.org/m2/"
+		url "https://storage.googleapis.com/jib-releases"
+	}
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.4.5")
