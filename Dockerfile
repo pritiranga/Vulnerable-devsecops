@@ -1,15 +1,21 @@
-# Use a base image with the JDK and necessary build tools installed
 FROM openjdk:11-jdk-slim
 
-# Set the working directory to /app
+RUN apt-get update && \
+    apt-get install -y wget && \
+    apt-get clean
+
+# Install Gradle
+ENV GRADLE_VERSION=7.1.1
+RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
+    unzip -d /opt gradle-${GRADLE_VERSION}-bin.zip && \
+    rm gradle-${GRADLE_VERSION}-bin.zip
+
+ENV GRADLE_HOME=/opt/gradle-${GRADLE_VERSION}
+ENV PATH=$PATH:$GRADLE_HOME/bin
+
+# Copy the project files and build the application
+COPY . /app
 WORKDIR /app
+RUN gradle build
 
-# Copy the Gradle project files to the container
-COPY . .
-
-# Run the Gradle build command
-RUN chmod +x gradlew
-RUN ./gradlew build
-
-# Set the command to run the application
-CMD ["java", "-jar", "build/libs/*.jar"]
+CMD ["java", "-jar", "/app/build/libs/myapp.jar"]
